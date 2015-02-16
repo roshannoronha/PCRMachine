@@ -1,0 +1,20 @@
+const int analogInPin = A0;
+int sensorValue = 0;
+int outputValue = 0;
+
+void setup() {
+  
+  Serial.begin(9600);
+}
+
+void loop() {
+  
+  sensorValue = analogRead(analogInPin);
+  
+  int celcius = (5.0 * sensorValue * 100.0) / 1024.0;
+  
+  Serial.print("Celcius = " + celcius);
+  Serial.println();
+  
+  delay(1000);
+}
