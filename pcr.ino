@@ -9,20 +9,18 @@ Purpose: This sketch will run a user defined number of heating and cooling cycle
 //import libraries
 #include "Timer.h"
 
-
-
-//user defined parameters
+//////////user defined parameters
 
 //number of cycles (30);
 int cycles = 30;
-//temp of the polymerase
+//temp of the polymerase in degrees C
 //user defined
-int polyTemp;
+int polyTemp = ;
 
-//temp of primer 1 and 2
+//temp of primer 1 and 2 in degrees C
 //both are user defined
-const int tempPrimerOne;
-const int tempPrimerTwo;
+const int tempPrimerOne = ;
+const int tempPrimerTwo = ;
 
 //temp in degrees and time in seconds for denaturation
 const int denatTemp = 98;
@@ -45,17 +43,18 @@ const int finalElongTemp = 72;
 const int timeFinalElong = 600;
 
 //holding temp in degrees and time in seconds for short term storage of the sample
-//max half an hour storage time (double check times)
+//max 30 min storage time
 const int tempHold = 4;
 const int timeTempHold = 1800;
 
-//end user defined parameters
+//////////end user defined parameters
 
-//get temps for each sample
-int sampleOneTemp;
-int sampleTwoTemp;
+//get temps for each sample from thermocouple
+int sampleOneTemp = ;
+int sampleTwoTemp = ;
 
-//start cycles
+//////////start cycles
+
 while (cycles >= 0) {
   
   if (cycles == 0) {
@@ -81,36 +80,7 @@ while (cycles >= 0) {
   cycles--;
 }
 
-void heatSamples(int tempParam) {
-  
-  //heat samples if sample temps are too low
-  if (sampleOneTemp < tempParam) && (sampleTwoTemp < tempParam) {
-  
-  }
-  
-  //cool samples if samples temps are too high
-  //probably need to switch the direction of the current to have the plate cool down
-  if ((sampleOneTemp > tempParam) && (sampleTwoTemp > tempParam)) {
-    
-  }
-}
-
-void hold() {
-
-  //cools samples to holding temp
-  heatSamples(tempHold);
-  
-  //initialize timer "t" to 0 seconds
-  while (t < timeTempHold) {
-    
-    if ((sampleOneTemp < (tempHold - 2)) || (sampleOneTemp < (tempHold - 2))) {
-      
-      heatSamples(elongTemp);
-    }
-  }
-}
-
-
+//////////end cycles
 
 void denaturation() {
   
@@ -156,6 +126,36 @@ void elongation() {
     }
   }
 }
+
+void heatSamples(int tempParam) {
+  
+  //heat samples if sample temps are too low
+  if (sampleOneTemp < tempParam) && (sampleTwoTemp < tempParam) {
+           
+  }
+  
+  //cool samples if samples temps are too high
+  //switches the direction of the current to have the plate cool down
+  if ((sampleOneTemp > tempParam) && (sampleTwoTemp > tempParam)) {
+    
+  }
+}
+
+void hold() {
+
+  //cools samples to holding temp
+  heatSamples(tempHold);
+  
+  //initialize timer "t" to 0 seconds
+  while (t < timeTempHold) {
+    
+    if ((sampleOneTemp < (tempHold - 2)) || (sampleOneTemp < (tempHold - 2))) {
+      
+      heatSamples(elongTemp);
+    }
+  }
+}
+
     
   
   
